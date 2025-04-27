@@ -7,7 +7,7 @@ import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
 import {Avatar, AvatarImage, AvatarFallback} from '@/components/ui/avatar';
 import {ScrollArea} from '@/components/ui/scroll-area';
 import {Separator} from '@/components/ui/separator';
-import {offerEmotionalSupport, OfferEmotionalSupportInput} from '@/ai/flows/offer-emotional-support';
+import {offerEmotionalSupport, OfferEmotionalSupportInput, OfferEmotionalSupportOutput} from '@/ai/flows/offer-emotional-support';
 
 const studentId = 'student123'; // Replace with dynamic student ID when auth is implemented
 
@@ -39,7 +39,7 @@ const AIChatPage: React.FC = () => {
           message: messageContent,
         };
 
-        const aiResponse = await offerEmotionalSupport(input);
+        const aiResponse: OfferEmotionalSupportOutput = await offerEmotionalSupport(input);
 
         // Add AI response to chat history
         setChatHistory(prevHistory => [
