@@ -53,7 +53,6 @@ const prompt = ai.definePrompt({
   Consider the student's specific situation (academic difficulties, social issues, personal struggles), and tailor your advice accordingly.
   Remember to maintain a conversational tone and avoid being overly formal or clinical.
 
-  Student ID: {{{studentId}}}
   Message: {{{message}}}
 
   Here's an example of what NOT to do, and what TO do:
