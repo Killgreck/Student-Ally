@@ -20,6 +20,7 @@ const AIChatPage: React.FC = () => {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [suggestion, setSuggestion] = useState<string | null>(null);
 
   // Function to send user message and receive AI response
   const sendMessage = useCallback(
@@ -41,12 +42,13 @@ const AIChatPage: React.FC = () => {
 
         // Await the AI response
         const aiResponse: OfferEmotionalSupportOutput = await offerEmotionalSupport(input);
-
         // Add AI response to chat history
         setChatHistory(prevHistory => [
           ...prevHistory,
           {role: 'ai', content: aiResponse.response},
         ]);
+
+        setSuggestion(aiResponse.response);
       } catch (error) {
         console.error('Error processing AI response:', error);
         // Handle error appropriately (e.g., display an error message in the chat)
@@ -134,6 +136,11 @@ const AIChatPage: React.FC = () => {
             <Button onClick={() => sendMessage(message)} disabled={isLoading} className="w-full">
               {isLoading ? 'Sending...' : 'Send'}
             </Button>
+            {suggestion && (
+              <div className="mt-4 rounded-md border p-4 bg-secondary">
+                {suggestion}
+              </div>
+            )}
           </div>
         </CardContent>
       </div>
