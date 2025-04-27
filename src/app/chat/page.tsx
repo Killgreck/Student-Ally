@@ -95,13 +95,13 @@ const AIChatPage: React.FC = () => {
   return (
     <SidebarProvider>
       <SidebarInset className="md:pl-[--sidebar-width]">
-    <div className="container relative flex h-screen antialiased">
+    <div className="container relative flex antialiased">
       <div className="mx-auto flex w-full max-w-md flex-col rounded-md border bg-secondary shadow-xl">
         <CardHeader className="flex flex-row items-center justify-center space-y-0 pb-2 pt-6 text-center">
           <CardTitle className="text-2xl font-semibold">AI Chat</CardTitle>
         </CardHeader>
 
-        <CardContent className="flex h-[calc(60vh-100px)] flex-col p-4">
+        <CardContent className="flex flex-col p-4">
             <div id="chat-container" className="flex flex-col space-y-4 p-4">
               {chatHistory.map((chatMessage, index) => (
                 <div key={index} className="flex items-start">
