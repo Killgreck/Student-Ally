@@ -8,7 +8,23 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { BarChart3 } from "lucide-react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarSeparator,
+  SidebarTrigger,
+  SidebarProvider,
+} from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { CalendarIcon, MessageSquare, BarChart3, Settings, LogOut } from "lucide-react";
 import {
   Chart,
   ChartContainer,
@@ -19,6 +35,7 @@ import {
   ChartStyle,
 } from "@/components/ui/chart";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import Link from 'next/link';
 import {analyzeStudentWellbeing, AnalyzeStudentWellbeingInput, AnalyzeStudentWellbeingOutput} from '@/ai/flows/analyze-student-wellbeing';
 
 interface EmotionData {
@@ -73,7 +90,13 @@ export default function EmotionalStatePage() {
         fetchEmotionalState();
     }, []);
 
+  const handleLogout = () => {
+    router.push("/");
+  };
+
   return (
+    <SidebarProvider>
+      <SidebarInset className="md:pl-[--sidebar-width]">
     <div className="container py-4">
       <Card>
         <CardHeader>
@@ -104,5 +127,67 @@ export default function EmotionalStatePage() {
         </CardContent>
       </Card>
     </div>
+      <Sidebar collapsible="icon">
+        <SidebarHeader className="font-bold">Student Ally</SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/dashboard">
+                  <Button variant="ghost" className="justify-start">
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    <span>Schedule</span>
+                  </Button>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/chat">
+                  <Button variant="ghost" className="justify-start">
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    <span>AI Chat</span>
+                  </Button>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/emotional-state">
+                  <Button variant="ghost" className="justify-start">
+                    <BarChart3 className="mr-2 h-4 w-4" />
+                    <span>Emotional State</span>
+                  </Button>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+        <SidebarFooter>
+          <SidebarSeparator />
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/settings">
+                  <Button variant="ghost" className="justify-start">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
+                  </Button>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton onClick={handleLogout} asChild>
+                <Button variant="ghost" className="justify-start">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Logout</span>
+                </Button>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarFooter>
+      </Sidebar>
+    </SidebarInset>
+    </SidebarProvider>
   );
 }
