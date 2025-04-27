@@ -14,6 +14,7 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
   SidebarTrigger,
+  SidebarProvider,
 } from "@/components/ui/sidebar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CalendarIcon, MessageSquare, BarChart3, Settings, LogOut } from "lucide-react";
@@ -201,3 +202,4 @@ export default function Dashboard() {
     </SidebarProvider>
   );
 }
+
