@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const users = [
   { id: "0004466785", password: "Carlitos90" },
@@ -96,8 +98,7 @@ export default function Home() {
           </div>
           <Button onClick={handleLogin}>Sign In</Button>
         </CardContent>
-
-        {showSurvey && (
+        <Popup open={showSurvey} position='center center'>
           <CardContent className="grid gap-4">
             <CardTitle className="text-xl font-semibold text-center">Learning Style Survey</CardTitle>
             <CardDescription className="text-center">
@@ -124,7 +125,7 @@ export default function Home() {
               <Button onClick={handleSurveySubmit}>Submit Survey</Button>
             </div>
           </CardContent>
-        )}
+        </Popup>
       </Card>
     </div>
   );
