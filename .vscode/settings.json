@@ -1,4 +1,29 @@
 {
     "IDX.aI.enableInlineCompletion": true,
-    "IDX.aI.enableCodebaseIndexing": true
+    "IDX.aI.enableCodebaseIndexing": true,
+    "debug.javascript.usePreviewAutoAttach": true,
+    "debug.node.autoAttach": "always",
+    "files.autoSave": "afterDelay",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "eslint.alwaysShowStatus": true,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "javascript.validate.enable": false,
+    "typescript.validate.enable": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true
+    },
+    "search.exclude": {
+        "**/.next": true,
+        "**/node_modules": true,
+        "**/.yarn": true
+    },
+    "cSpell.words": [
+        "clsx",
+        "lucide",
+        "shadcn",
+        "tailwindcss",
+        "svh"
+    ]
 }
