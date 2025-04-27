@@ -8,6 +8,23 @@ import {Avatar, AvatarImage, AvatarFallback} from '@/components/ui/avatar';
 import {ScrollArea} from '@/components/ui/scroll-area';
 import {Separator} from '@/components/ui/separator';
 import {offerEmotionalSupport, OfferEmotionalSupportInput, OfferEmotionalSupportOutput} from '@/ai/flows/offer-emotional-support';
+import { CalendarIcon, MessageSquare, BarChart3, Settings, LogOut } from "lucide-react";
+import Link from 'next/link';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarSeparator,
+  SidebarTrigger,
+  SidebarProvider,
+} from "@/components/ui/sidebar";
 
 const studentId = 'student123'; // Replace with dynamic student ID when auth is implemented
 
@@ -71,7 +88,13 @@ const AIChatPage: React.FC = () => {
     }
   }, [chatHistory]);
 
+  const handleLogout = () => {
+    router.push("/");
+  };
+
   return (
+    <SidebarProvider>
+      <SidebarInset className="md:pl-[--sidebar-width]">
     <div className="container relative flex h-screen antialiased">
       <div className="mx-auto flex w-full max-w-md flex-col rounded-md border bg-secondary shadow-xl">
         <CardHeader className="flex flex-row items-center justify-center space-y-0 pb-2 pt-6 text-center">
@@ -79,7 +102,6 @@ const AIChatPage: React.FC = () => {
         </CardHeader>
 
         <CardContent className="flex h-[calc(60vh-100px)] flex-col p-4">
-          <ScrollArea className="flex-1 rounded-md border">
             <div id="chat-container" className="flex flex-col space-y-4 p-4">
               {chatHistory.map((chatMessage, index) => (
                 <div key={index} className="flex items-start">
@@ -118,7 +140,6 @@ const AIChatPage: React.FC = () => {
                 </div>
               )}
             </div>
-          </ScrollArea>
           <Separator className="my-4" />
           <div className="pb-2">
             <Textarea
@@ -136,15 +157,72 @@ const AIChatPage: React.FC = () => {
             <Button onClick={() => sendMessage(message)} disabled={isLoading} className="w-full">
               {isLoading ? 'Sending...' : 'Send'}
             </Button>
-            {suggestion && (
-              <div className="mt-4 rounded-md border p-4 bg-secondary">
-                {suggestion}
-              </div>
-            )}
           </div>
         </CardContent>
       </div>
     </div>
+    </SidebarInset>
+      <Sidebar collapsible="icon">
+        <SidebarHeader className="font-bold">Student Ally</SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/dashboard">
+                  <Button variant="ghost" className="justify-start">
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    <span>Schedule</span>
+                  </Button>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/chat">
+                  <Button variant="ghost" className="justify-start">
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    <span>AI Chat</span>
+                  </Button>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/emotional-state">
+                  <Button variant="ghost" className="justify-start">
+                    <BarChart3 className="mr-2 h-4 w-4" />
+                    <span>Emotional State</span>
+                  </Button>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarContent>
+        <SidebarFooter>
+          <SidebarSeparator />
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/settings">
+                  <Button variant="ghost" className="justify-start">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
+                  </Button>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton onClick={handleLogout} asChild>
+                <Button variant="ghost" className="justify-start">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Logout</span>
+                </Button>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarFooter>
+      </Sidebar>
+    </SidebarProvider>
   );
 };
 
