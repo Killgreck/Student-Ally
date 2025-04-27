@@ -11,8 +11,8 @@
     "javascript.validate.enable": false,
     "typescript.validate.enable": false,
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true,
-        "source.organizeImports": true
+        "source.fixAll.eslint": "explicit",
+        "source.organizeImports": "explicit"
     },
     "search.exclude": {
         "**/.next": true,
