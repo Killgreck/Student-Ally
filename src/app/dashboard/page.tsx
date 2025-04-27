@@ -12,7 +12,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarProvider,
   SidebarSeparator,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
@@ -33,6 +32,7 @@ import { Area, AreaChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis } fro
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from 'next/link';
 
 interface EmotionData {
   name: string;
@@ -144,26 +144,32 @@ export default function Dashboard() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Button variant="ghost" className="justify-start">
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  <span>Schedule</span>
-                </Button>
+                <Link href="/dashboard">
+                  <Button variant="ghost" className="justify-start">
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    <span>Schedule</span>
+                  </Button>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Button variant="ghost" className="justify-start">
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  <span>AI Chat</span>
-                </Button>
+                <Link href="/chat">
+                  <Button variant="ghost" className="justify-start">
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    <span>AI Chat</span>
+                  </Button>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Button variant="ghost" className="justify-start">
-                  <BarChart3 className="mr-2 h-4 w-4" />
-                  <span>Emotional State</span>
-                </Button>
+                <Link href="/emotional-state">
+                  <Button variant="ghost" className="justify-start">
+                    <BarChart3 className="mr-2 h-4 w-4" />
+                    <span>Emotional State</span>
+                  </Button>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -173,10 +179,12 @@ export default function Dashboard() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Button variant="ghost" className="justify-start">
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
-                </Button>
+                <Link href="/settings">
+                  <Button variant="ghost" className="justify-start">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
+                  </Button>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
