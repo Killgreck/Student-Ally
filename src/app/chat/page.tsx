@@ -39,6 +39,7 @@ const AIChatPage: React.FC = () => {
           message: messageContent,
         };
 
+        // Await the AI response
         const aiResponse: OfferEmotionalSupportOutput = await offerEmotionalSupport(input);
 
         // Add AI response to chat history
